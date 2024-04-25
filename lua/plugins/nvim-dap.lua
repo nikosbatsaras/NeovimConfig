@@ -18,6 +18,7 @@ return {
                 vim.keymap.set('n', '<Leader>di', function() dap.step_into() end)
                 vim.keymap.set('n', '<Leader>du', function() dap.step_out() end)
                 vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end)
+                vim.keymap.set('n', '<Leader>dl', function() dap.clear_breakpoints() end)
 
                 vim.keymap.set('n', '<Leader>dt', function() dapgo.debug_test() end)
 
