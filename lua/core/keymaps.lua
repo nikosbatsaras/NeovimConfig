@@ -26,7 +26,7 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>")
 keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>")
 
 keymap.set("n", "gD", vim.lsp.buf.declaration)
-keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>")
+keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>")
 keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
 keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>")
 keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>")
