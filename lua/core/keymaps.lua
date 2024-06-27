@@ -65,6 +65,13 @@ keymap.set("n", "<leader>T", function()
 end)
 
 vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.go" },
+  callback = function()
+	  vim.lsp.buf.format { async = false }
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = { "*.go" },
         callback = function()
                 local params = vim.lsp.util.make_range_params(nil, "utf-16")
