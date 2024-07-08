@@ -48,22 +48,6 @@ keymap.set("n", "<F7>", "<cmd>setlocal spell! spelllang=el<CR>")
 keymap.set("i", "<C-a>", "<C-g>u<Esc>[s1z=`]a<C-g>u")
 keymap.set("n", "<C-a>", "i<C-g>u<Esc>[s1z=`]a<C-g>u<Esc>")
 
-keymap.set("n", "<leader>T", function()
-        local testName = vim.fn.expand("<cword>")
-        local currDir = vim.fn.expand("%:p:h")
-        local cmd = 'cd ' .. currDir .. ' && go test -testify.m ' .. testName .. ' ' .. currDir
-        local output = vim.fn.system(cmd)
-        local lines = vim.fn.split(output, '\n')
-        vim.cmd('new')
-        for _, line in ipairs(lines) do
-                vim.fn.append('$', line)
-        end
-        vim.opt_local.buftype = 'nofile'
-        vim.opt_local.bufhidden = 'wipe'
-        vim.opt_local.readonly = true
-        vim.cmd('resize 10')
-end)
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.go" },
   callback = function()

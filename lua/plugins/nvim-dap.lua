@@ -55,8 +55,6 @@ return {
                 vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end)
                 vim.keymap.set('n', '<Leader>dl', function() dap.clear_breakpoints() end)
 
-                vim.keymap.set('n', '<Leader>dt', function() dapgo.debug_test() end)
-
                 dap.listeners.before.attach.dapui_config = function()
                         dapui.open()
                 end
