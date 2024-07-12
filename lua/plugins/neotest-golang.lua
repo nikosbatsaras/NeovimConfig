@@ -4,7 +4,6 @@ return {
     dependencies = {
       {
         "fredrikaverpil/neotest-golang",
-        branch = "feat/test-suite-support",  -- ADD THIS
       },
     },
     opts = function(_, opts)
@@ -16,7 +15,7 @@ return {
           "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
         },
         dap_go_enabled = true,
-        testify = true,  -- ADD THIS
+        testify_enabled = true,
       }
     end,
     config = function(_, opts)
