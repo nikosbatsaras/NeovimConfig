@@ -17,6 +17,10 @@ return {
         dap_go_enabled = true,
         testify_enabled = true,
       }
+      opts.discovery = {
+        enabled = false,
+        concurrent = 1,
+      }
     end,
     config = function(_, opts)
       if opts.adapters then
