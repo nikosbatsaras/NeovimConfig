@@ -12,6 +12,7 @@ git clone git@github.com:nikosbatsaras/NeovimConfig.git ~/.config/nvim
 For MacOS via [Homebrew](https://brew.sh/):
 - neovim: `brew install neovim`
 - ripgrep: `brew install ripgrep`
+- fd: `brew install fd`
 - nerd-fonts:
     ```
     brew tap homebrew/cask-fonts
