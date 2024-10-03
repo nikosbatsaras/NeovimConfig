@@ -22,6 +22,12 @@ For MacOS via [Homebrew](https://brew.sh/):
 - Install `gopls` and `lua-language-server` via Mason (`:Mason`)
 
 # Troubleshooting
-- Ensure you `:Lazy` and `U` to update
-- In case you fall into issue with `telescope` not showing preview because of `fzf-native`:
+Before you do anything, ensure you `:Lazy` and `U` to update plugins.
+
+Here is a list of issues I dealt with in the past:
+- If `telescope` is not showing preview because of `fzf-native`:
     - Ensure you `:Lazy`, go to `telescope-fzf-native` plugin and hit `gb` to build it
+- If `telescope` is not showing Dockerfile previews:
+    - Ensure you `:TSInstall dockerfile`
+- If edit mode does not autoindent:
+    - Ensure you `:TSInstall go`
