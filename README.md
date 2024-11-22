@@ -13,6 +13,7 @@ For MacOS via [Homebrew](https://brew.sh/):
 - Neovim: `brew install neovim`
 - ripgrep: `brew install ripgrep`
 - fd: `brew install fd`
+- fzf: `brew install fzf`
 - Nerd Fonts: `brew install font-meslo-lg-nerd-font`
     - On iTerm2, under Profiles -> Text, pick `MesloLGS Nerd Font Mono` for `Font`.
 - LSPs: `gopls` and `lua-language-server` via Mason (`:MasonInstall`)
