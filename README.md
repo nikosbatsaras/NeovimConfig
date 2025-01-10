@@ -31,3 +31,16 @@ Here is a list of issues I dealt with in the past:
     - Ensure you `:TSInstall dockerfile`
 - If edit mode does not autoindent:
     - Ensure you `:TSInstall go`
+
+# HOWTOs
+Brief step-by-step guides.
+
+### Unit test debugging
+  
+- Toggle breakpoint (\<space>db)
+- Start the debugger (\<space>dc)
+- Select `Debug test (go.mod)`
+
+Note: Good practice to first toggle breakpoint inside the specific test you are
+trying to run to ensure that you know when the specific test is being debugged.
+Currently the debugger starts from the 1st test of the suite :(
