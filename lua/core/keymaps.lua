@@ -9,10 +9,10 @@ keymap.set("n", "<leader>sh", "<C-w>s")
 keymap.set("n", "<leader>se", "<C-w>=")
 keymap.set("n", "<leader>sx", "<cmd>close<CR>")
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>")
 keymap.set("n", ">", "<cmd>tabn<CR>")
 keymap.set("n", "<", "<cmd>tabp<CR>")
+keymap.set("n", "<Right>", "<cmd>:tabmove +1<CR>")
+keymap.set("n", "<Left>", "<cmd>:tabmove -1<CR>")
 
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>")
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>")
