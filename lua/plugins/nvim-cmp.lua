@@ -1,7 +1,6 @@
 return {
         "hrsh7th/nvim-cmp",
         dependencies = {
-                'neovim/nvim-lspconfig',
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-buffer',
                 'hrsh7th/cmp-path',
@@ -65,41 +64,6 @@ return {
                                 { name = 'cmdline' }
                         }),
                         matching = { disallow_symbol_nonprefix_matching = false }
-                })
-
-                local lspconfig = require('lspconfig')
-                local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-                lspconfig['gopls'].setup {
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                        cmd = { "gopls" },
-                        filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                        root_dir = vim.loop.cwd,
-                        settings = {
-                                gopls = {
-                                        completeUnimported = true,
-                                        usePlaceholders = true,
-                                        analyses = {
-                                                unusedparams = true,
-                                        },
-                                        staticcheck = true,
-                                },
-                        },
-                }
-                lspconfig["lua_ls"].setup({
-                        capabilities = capabilities,
-                        settings = {
-                                Lua = {
-                                        -- make the language server recognize "vim" global
-                                        diagnostics = {
-                                                globals = { "vim" },
-                                        },
-                                        completion = {
-                                                callSnippet = "Replace",
-                                        },
-                                },
-                        },
                 })
         end,
 }
