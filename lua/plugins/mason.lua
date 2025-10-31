@@ -3,7 +3,6 @@ return {
         opts = {
                 ensure_installed = {
                         "gopls",
-                        "golines",
                         "lua-language-server",
                 },
         },

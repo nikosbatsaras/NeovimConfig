@@ -74,15 +74,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({async = false})
   end
 })
-
--- Auto-run golines before saving Go files
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    -- Run golines with a max line length of 100, modify as you prefer
-    vim.cmd("silent! !golines -w --max-len=100 %")
-    -- Reload buffer after golines modifies the file
-    vim.cmd("edit!")
-  end,
-})
-
