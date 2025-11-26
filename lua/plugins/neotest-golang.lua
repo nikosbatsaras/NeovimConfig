@@ -1,58 +1,69 @@
 return {
+  {
     "nvim-neotest/neotest",
-    ft = { "go" },
     dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      {
+        "nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+        branch = "master",  -- NOTE; not the master branch!
+        build = function()
+          vim.cmd(":TSUpdate go")
+        end,
+        config = function()
+                local treesitter = require("nvim-treesitter.configs")
+
+                treesitter.setup({
+                        highlight = {
+                                enable = true,
+                        },
+
+                        indent = { enable = true },
+
+                        ensure_installed = {
+                                "json",
+                                "yaml",
+                                "markdown",
+                                "markdown_inline",
+                                "bash",
+                                "lua",
+                                "vim",
+                                "dockerfile",
+                                "gitignore",
+                                "vimdoc",
+                                "go",
+                        },
+
+                        auto_install = true,
+                })
+        end,
+      },
       {
         "fredrikaverpil/neotest-golang",
+        version = "*",  -- Optional, but recommended; track releases
+        build = function()
+          vim.system({"go", "install", "gotest.tools/gotestsum@latest"}):wait() -- Optional, but recommended
+        end,
+        -- config = function()
+        -- require("neotest").setup({
+        --     testify_enabled = true,  -- IMPORTANT
+        --     experimental = {
+        --       test_table = true,     -- IMPORTANT: enables table-driven test detection
+        --     },
+        -- })
+        -- end,
       },
     },
-    opts = function(_, opts)
-      opts.adapters = opts.adapters or {}
-      opts.adapters["neotest-golang"] = {
-        go_test_args = {
-          "-v",
-          "-race",
-          "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+    config = function()
+      local config = {
+        runner = "gotestsum", -- Optional, but recommended
+      }
+      require("neotest").setup({
+        adapters = {
+          require("neotest-golang")(config),
         },
-        dap_go_enabled = true,
-        testify_enabled = true,
-      }
-      opts.discovery = {
-        enabled = false,
-        concurrent = 1,
-      }
-    end,
-    config = function(_, opts)
-      if opts.adapters then
-        local adapters = {}
-        for name, config in pairs(opts.adapters or {}) do
-          if type(name) == "number" then
-            if type(config) == "string" then
-              config = require(config)
-            end
-            adapters[#adapters + 1] = config
-          elseif config ~= false then
-            local adapter = require(name)
-            if type(config) == "table" and not vim.tbl_isempty(config) then
-              local meta = getmetatable(adapter)
-              if adapter.setup then
-                adapter.setup(config)
-              elseif adapter.adapter then
-                adapter.adapter(config)
-                adapter = adapter.adapter
-              elseif meta and meta.__call then
-                adapter(config)
-              else
-                error("Adapter " .. name .. " does not support setup")
-              end
-            end
-            adapters[#adapters + 1] = adapter
-          end
-        end
-        opts.adapters = adapters
-      end
-
-      require("neotest").setup(opts)
+      })
     end,
     keys = {
       { "<leader>ta", function() require("neotest").run.attach() end, desc = "[t]est [a]ttach" },
@@ -67,4 +78,5 @@ return {
       { "<leader>tt", function() require("neotest").run.stop() end, desc = "[t]est [t]erminate" },
       { "<leader>td", function() require("neotest").run.run({ suite = false, strategy = "dap" }) end, desc = "Debug nearest test" },
     },
+  },
 }
