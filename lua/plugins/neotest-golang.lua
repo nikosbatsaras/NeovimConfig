@@ -45,19 +45,16 @@ return {
         build = function()
           vim.system({"go", "install", "gotest.tools/gotestsum@latest"}):wait() -- Optional, but recommended
         end,
-        -- config = function()
-        -- require("neotest").setup({
-        --     testify_enabled = true,  -- IMPORTANT
-        --     experimental = {
-        --       test_table = true,     -- IMPORTANT: enables table-driven test detection
-        --     },
-        -- })
-        -- end,
       },
     },
     config = function()
       local config = {
         runner = "gotestsum", -- Optional, but recommended
+        warn_test_name_dupes = false,
+        testify_enabled = true,  -- IMPORTANT
+        experimental = {
+          test_table = true,     -- IMPORTANT: enables table-driven test detection
+        },
       }
       require("neotest").setup({
         adapters = {
